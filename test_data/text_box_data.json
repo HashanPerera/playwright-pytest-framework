@@ -1,0 +1,14 @@
+[
+    {
+        "full_name": "John Doe",
+        "email": "john.doe@example.com",
+        "current_address": "123 Main St",
+        "permanent_address": "456 Oak Ave"
+    },
+    {
+        "full_name": "Jane Smith",
+        "email": "john.doe@example.com",
+        "current_address": "789 Elm St",
+        "permanent_address": "101 Pine Rd"
+    }
+]
