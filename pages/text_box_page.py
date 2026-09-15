@@ -5,13 +5,12 @@ class TextBoxPage:
     def __init__(self, page: Page):
         self.page = page
 
-        # using ID selector for the "Full Name" input field
+        # using ID selector for the "Full Name", "Email","Current Address", and "Permanent Address" input field
         self.full_name_input = page.locator("id=userName")
-        # using ID selector for the "Email" input field
         self.email_input = page.locator("#userEmail")
-        # using ID selector for the "Current Address" input field
         self.current_address_input = page.locator("#currentAddress")
         self.permanent_address_input = page.locator("#permanentAddress")
+        
         # using role selector for the "Submit" button
         self.submit_button = page.get_by_role("button", name="Submit")
 
