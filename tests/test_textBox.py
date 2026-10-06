@@ -7,6 +7,7 @@ test_data = read_json("test_data/text_box_data.json")
 @pytest.mark.parametrize("data", test_data)
 def test_textBox_submit(text_box_page, data):
 
+#TC-TextBox-001
     #Launch the Text Box page
     text_box_page.navigate()
 
@@ -20,5 +21,48 @@ def test_textBox_submit(text_box_page, data):
     text_box_page.submit_form()
 
     #Verify that the submitted data is displayed correctly on the page
-    text_box_page.verify_submission(data["full_name"], data["email"])
+    assert text_box_page.name_output.inner_text() == f"Name:{data['full_name']}"
+    assert text_box_page.email_output.inner_text() == f"Email:{data['email']}"
 
+
+def test_textBox_invalid_email(text_box_page):
+    #TC-TextBox-002
+    #Launch the Text Box page
+    text_box_page.navigate()
+
+    #Fill in the "Full Name" and "Email" input fields with sample data, but provide an invalid email format
+    text_box_page.fill_full_name("John Doe")
+    text_box_page.fill_email("invalid-email-format")
+
+    #Submit the form
+    text_box_page.submit_form()
+
+    #Verify that an appropriate error message is displayed for the invalid email format
+    color = text_box_page.email_input.evaluate("element => getComputedStyle(element).borderColor");
+    assert color == "solid red"  # Assuming red border for invalid input
+
+def test_textBox_with_one_field(text_box_page):
+    #TC-TextBox-003
+    #Launch the Text Box page
+    text_box_page.navigate()
+
+    #Fill in the "Full Name" and "Email" input fields with special characters
+    text_box_page.fill_full_name("John Doe")
+
+    #Submit the form
+    text_box_page.submit_form()
+
+    #Verify that the submitted data is displayed correctly on the page
+    assert text_box_page.name_output.inner_text() == "Name:John Doe"
+
+def test_textBox_empty_fields(text_box_page):
+    #TC-TextBox-004
+    #Launch the Text Box page
+    text_box_page.navigate()
+
+    #Submit the form without filling any fields
+    text_box_page.submit_form()
+
+    #Verify that appropriate error messages are displayed for each empty field
+    #text_box_page.verify_empty_fields_error()
+    

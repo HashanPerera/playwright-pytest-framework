@@ -17,6 +17,8 @@ class TextBoxPage:
         # Output elements
         self.name_output = page.locator("#name")
         self.email_output = page.locator("#email")
+        self.current_address_output = page.locator("#currentAddress")
+        self.permanent_address_output = page.locator("#permanentAddress")
 
     def navigate(self):
         self.page.goto("https://demoqa.com/text-box")
