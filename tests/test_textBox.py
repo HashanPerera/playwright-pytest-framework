@@ -6,9 +6,9 @@ from playwright.sync_api import expect
 test_data = read_json("test_data/text_box_data.json")
 
 @pytest.mark.parametrize("data", test_data)
-def test_textBox_submit(text_box_page, data):
 
-#TC-TextBox-001
+def test_textBox_submit(text_box_page, data):
+    #TC-TextBox-001
     #Launch the Text Box page
     text_box_page.navigate()
 
@@ -24,6 +24,8 @@ def test_textBox_submit(text_box_page, data):
     #Verify that the submitted data is displayed correctly on the page
     assert text_box_page.name_output.inner_text() == f"Name:{data['full_name']}"
     assert text_box_page.email_output.inner_text() == f"Email:{data['email']}"
+    assert text_box_page.current_address_output.inner_text() == f"Current Address :{data['current_address']}"
+    assert text_box_page.permanent_address_output.inner_text() == f"Permananet Address :{data['permanent_address']}"
 
 
 def test_textBox_invalid_email(text_box_page):
@@ -72,5 +74,8 @@ def test_textBox_empty_fields(text_box_page):
     text_box_page.submit_form()
 
     #Verify that appropriate error messages are displayed for each empty field
-    #text_box_page.verify_empty_fields_error()
+    expect(text_box_page.name_output).not_to_be_visible()
+    expect(text_box_page.email_output).not_to_be_visible()
+    expect(text_box_page.current_address_output).to_be_hidden()
+    expect(text_box_page.permanent_address_output).to_be_hidden()
     
