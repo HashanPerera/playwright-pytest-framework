@@ -1,6 +1,7 @@
 """Implement the test logic here"""
 import pytest
 from utils.data_reader import read_json
+from playwright.sync_api import expect
 
 test_data = read_json("test_data/text_box_data.json")
 
@@ -58,6 +59,9 @@ def test_textBox_with_one_field(text_box_page):
 
     #Verify that the submitted data is displayed correctly on the page
     assert text_box_page.name_output.inner_text() == "Name:John Doe"
+    expect(text_box_page.email_output).not_to_be_visible()
+    expect(text_box_page.current_address_output).to_be_hidden()
+    expect(text_box_page.permanent_address_output).not_to_be_visible()
 
 def test_textBox_empty_fields(text_box_page):
     #TC-TextBox-004

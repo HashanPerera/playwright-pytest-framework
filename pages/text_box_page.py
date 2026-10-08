@@ -17,8 +17,8 @@ class TextBoxPage:
         # Output elements
         self.name_output = page.locator("#name")
         self.email_output = page.locator("#email")
-        self.current_address_output = page.locator("#currentAddress")
-        self.permanent_address_output = page.locator("#permanentAddress")
+        self.current_address_output = page.locator("xpath=(//p[@id='currentAddress' and @class='mb-1'])")
+        self.permanent_address_output = page.locator("xpath=(//p[@id='permanentAddress' and @class='mb-1'])")
 
         self.invalid_email = page.locator("xpath=(//div[contains(@class,'col-md-9 col-sm-12')])[2]")
 
