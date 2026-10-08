@@ -20,6 +20,8 @@ class TextBoxPage:
         self.current_address_output = page.locator("#currentAddress")
         self.permanent_address_output = page.locator("#permanentAddress")
 
+        self.invalid_email = page.locator("xpath=(//div[contains(@class,'col-md-9 col-sm-12')])[2]")
+
     def navigate(self):
         self.page.goto("https://demoqa.com/text-box")
     
@@ -41,3 +43,7 @@ class TextBoxPage:
     def verify_submission(self, full_name:str, email:str):
         assert self.name_output.inner_text() == f"Name:{full_name}"
         assert self.email_output.inner_text() == f"Email:{email}"
+
+    
+
+        
