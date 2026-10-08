@@ -2,6 +2,7 @@ import pytest
 from playwright.sync_api import Page, Browser, sync_playwright
 
 from pages.text_box_page import TextBoxPage
+from pages.check_box_page import CheckBoxPage
 
 
 @pytest.fixture
@@ -26,3 +27,7 @@ def page() -> Page:
 @pytest.fixture
 def text_box_page(page):
     return TextBoxPage(page)
+
+@pytest.fixture
+def check_box_page(page):
+    return CheckBoxPage(page) 
