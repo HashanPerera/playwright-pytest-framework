@@ -21,6 +21,7 @@ class TextBoxPage:
         self.permanent_address_output = page.locator("xpath=(//p[@id='permanentAddress' and @class='mb-1'])")
 
         self.invalid_email = page.locator("xpath=(//div[contains(@class,'col-md-9 col-sm-12')])[2]")
+        self.invalid_email_class_name = page.locator("xpath=(//input[@class='mr-sm-2 field-error form-control'])")
 
     def navigate(self):
         self.page.goto("https://demoqa.com/text-box")

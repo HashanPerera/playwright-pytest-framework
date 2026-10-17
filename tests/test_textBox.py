@@ -43,6 +43,7 @@ def test_textBox_invalid_email(text_box_page):
     #verify invalid email error
     text_box_page.email_input.fill("invalid-email-format")
     text_box_page.submit_button.click()
+    expect(text_box_page.invalid_email_class_name).to_have_class("mr-sm-2 field-error form-control")
     """ input_border_color = text_box_page.email_input.evaluate(
     "(element) => getComputedStyle(element).borderColor"
     )

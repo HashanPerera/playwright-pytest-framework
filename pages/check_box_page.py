@@ -11,7 +11,7 @@ class CheckBoxPage:
         self.document_expander_opened = page.locator("xpath=(//span[contains(@class, 'rc-tree-switcher rc-tree-switcher_open')])[2]")
         self.workspace_expander_opened = page.locator("xpath=(//span[contains(@class, 'rc-tree-switcher rc-tree-switcher_open')])[3]")
         self.angular_expander = page.locator("xpath=(//span[contains(@class, 'rc-tree-checkbox')])[6]")
-        self.result_text = page.locator("xpath=//div[@id='result']")
+        self.result_text = page.locator("id=result")
       
     def navigate(self):
         self.page.goto("https://demoqa.com/checkbox")
@@ -35,7 +35,6 @@ class CheckBoxPage:
         expect(self.angular_expander).to_be_visible()
         self.angular_expander.check()
         expect(self.angular_expander).to_be_checked()
-        assert self.result_text.inner_text() == "You have selected :\nangular"
     
     def uncheck_Angular(self):
         expect(self.workspace_expander_opened).to_be_visible()

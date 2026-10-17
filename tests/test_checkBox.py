@@ -49,6 +49,8 @@ def test_checking_angular_checkbox(check_box_page):
 
     #Expand the "Angular" checkbox
     check_box_page.check_Angular()
+    assert check_box_page.result_text.inner_text() == "You have selected :\nangular"
+
 
 def test_unchecking_angular_checkbox(check_box_page):
     #TC-CheckBox-005
