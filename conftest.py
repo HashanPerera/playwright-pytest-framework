@@ -4,6 +4,7 @@ from playwright.sync_api import Page, Browser, sync_playwright
 from pages.text_box_page import TextBoxPage
 from pages.check_box_page import CheckBoxPage
 from pages.radio_button_page import Radio_button_page
+from pages.buttons_page import Button_page
 
 
 @pytest.fixture
@@ -36,3 +37,7 @@ def check_box_page(page):
 @pytest.fixture
 def radio_button_page(page):
     return Radio_button_page(page)
+
+@pytest.fixture
+def button_page(page):
+    return Button_page(page)
