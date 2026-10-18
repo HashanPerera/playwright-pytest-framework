@@ -5,6 +5,8 @@ from pages.text_box_page import TextBoxPage
 from pages.check_box_page import CheckBoxPage
 from pages.radio_button_page import Radio_button_page
 from pages.buttons_page import Button_page
+from pages.practice_form_page import Practice_FormPage
+from pages.web_tables_page import WebTablesPage
 
 
 @pytest.fixture
@@ -41,3 +43,11 @@ def radio_button_page(page):
 @pytest.fixture
 def button_page(page):
     return Button_page(page)
+
+@pytest.fixture
+def practice_form_page(page):
+    return Practice_FormPage(page)
+
+@pytest.fixture
+def web_table_page(page):
+    return WebTablesPage(page)
