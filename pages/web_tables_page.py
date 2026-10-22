@@ -27,6 +27,17 @@ class WebTablesPage:
         self.submit_button = page.locator("id=submit")
 
         self.result_coloumn = page.locator("xpath=//tr[4]//td[1]")
+        self.search_data = page.locator("id=searchBox")
+        self.searched_email = page.locator("xpath=//tr//td[4]")
+
+        self.edit_data = page.locator("id=edit-record-1")
+        self.edit_lastname = page.locator("id=lastName")
+        self.edit_form_submit = page.locator("id=submit")
+        self.edited_lastname = page.locator("xpath=//tr//td[2]")
+
+        self.delete_record = page.locator("id=delete-record-1")
+        self.deleted_row = page.locator("xpath=//tbody//tr")
+
 
     def navigate(self):
         self.page.goto(self.web_tables_link)
@@ -41,18 +52,27 @@ class WebTablesPage:
         self.department_input.fill(form_data["department"])
         self.submit_button.click()
         expect(self.result_coloumn).to_contain_text(form_data["first_name"])
-    
-    
-    """
-    def search_record(self, search_term):
-        self.page.locator("id=searchBox").fill(search_term)
-        #expect(self.page.locator("id=searchBox")).to_have_value(search_term)
-    
-    def edit_record(self, row_index, data):
-        self.page.locator("id=searchBox").fill(data["email"])
-        self.page.locator(f"xpath=//div[@class='rt-tr-group'][{row_index}]//span[@title='Edit']").click()
-        self.salary_input.fill(data["salary1"])
-        self.submit_button.click()
-        expect(page.locator("xpath=//*[@id=root]/div/div/div/div[2]/div[1]/div[2]/table/tbody/tr/td[5]")).to_contain_text(data["salary1"])
 
-        """
+    def search_record(self):
+        self.search_data.fill("Cierra")
+        expect(self.searched_email).to_contain_text("cierra@example.com")
+ 
+    def edit_record(self):
+        self.search_data.fill("cierra@example.com")
+        expect(self.searched_email).to_contain_text("cierra@example.com")
+        self.edit_data.click()
+        self.edit_lastname.clear()
+        self.edit_lastname.fill("Vegan")
+        self.edit_form_submit.click()
+        expect(self.edited_lastname).to_contain_text("Vegan")
+
+    def delete_table_row(self):
+        self.search_data.fill("cierra@example.com")
+        expect(self.searched_email).to_contain_text("cierra@example.com")
+        self.delete_record.click()
+        expect(self.deleted_row).to_be_hidden()
+
+
+
+
+    
