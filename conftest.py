@@ -7,6 +7,7 @@ from pages.radio_button_page import Radio_button_page
 from pages.buttons_page import Button_page
 from pages.practice_form_page import Practice_FormPage
 from pages.web_tables_page import WebTablesPage
+from pages.broken_links_images import BrokenLinkImages
 
 
 @pytest.fixture
@@ -21,6 +22,8 @@ def page() -> Page:
         context = browser.new_context()
 
         page = context.new_page()
+
+        main_link = "https://demoqa.com/"
 
         yield page
 
@@ -51,3 +54,7 @@ def practice_form_page(page):
 @pytest.fixture
 def web_table_page(page):
     return WebTablesPage(page)
+
+@pytest.fixture
+def broken_link_image(page):
+    return BrokenLinkImages(page)
